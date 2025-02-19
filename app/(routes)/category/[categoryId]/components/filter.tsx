@@ -2,13 +2,13 @@
 
 import Button from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Color, Size } from "@/types";
+import { Size } from "@/types";
 import { useRouter, useSearchParams } from "next/navigation";
 // import queryString from "query-string";
 import qs from "query-string";
 
 interface FilterProps {
-    data: (Size | Color)[];
+    data: (Size)[];
     name: string;
     valueKey: string;
 }

@@ -5,10 +5,13 @@ import useCart from "@/hooks/use-cart";
 import { useEffect, useState } from "react";
 import CartItem from "./components/cart-item";
 import Summary from "./components/summary";
+import Button from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const CartPage = () => {
     const [isMounted, setMounted] = useState(false);
     const cart = useCart();
+    const routes = useRouter();
 
     useEffect(() => {
         setMounted(true);

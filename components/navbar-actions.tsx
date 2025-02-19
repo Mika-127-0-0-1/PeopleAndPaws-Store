@@ -5,6 +5,7 @@ import useCart from "@/hooks/use-cart";
 import { ShoppingBag } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+// import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 
 const NavbarActions = () => {
     const [isMounted, setMounted] = useState(false);
@@ -22,6 +23,12 @@ const NavbarActions = () => {
 
     return (
         <div className="ml-auto flex items-center gap-x-4">
+             {/* <SignedOut>
+                <SignInButton />
+            </SignedOut>
+            <SignedIn>
+                <UserButton />
+            </SignedIn> */}
             <Button onClick={() => router.push("/cart")} className="flex items-center rounded-full bg-black py-2">
                 <ShoppingBag 
                 size={20}

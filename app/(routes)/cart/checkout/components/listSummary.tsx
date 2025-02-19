@@ -3,26 +3,17 @@
 import Button from "@/components/ui/button";
 import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
+import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import SumItem from "./summery-item";
 
-const Summary = () => {
-    // const searchParams = useSearchParams();
-    // const removeAll = useCart((state) => state.removeAll);
+const ListSummary = () => {
+    const removeAll = useCart((state) => state.removeAll);
     const items = useCart((state) => state.items);
     const routes = useRouter();
-
-    // useEffect(() => {
-    //     if(searchParams.get("success")) {
-    //         toast.success("Payment completed.");
-    //         removeAll();
-    //     }
-
-    //     if(searchParams.get("canceled")) {
-    //         toast.error("Something went wrong.");
-    //     }
-    // }, [searchParams, removeAll]);
+    const cart = useCart();
 
     const totalPrice = items.reduce((total, item) => {
         return total + Number(item.price);
@@ -31,22 +22,30 @@ const Summary = () => {
     return (
         <div className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
             <h2 className="text-lg font-medium text-gray-900">
-                Order Summary
+                Order summary
             </h2>
             <div className="mt-6 space-y-4">
                 <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-                    <div className="text-base font-medium text-gray-900">
-                        Order total
-                    </div>
-                    <Currency value={totalPrice}/>
+                    <ul>
+                        {cart.items.map((item) => (
+                            <SumItem 
+                            key={item.id}
+                            data={item}
+                            />
+                        ))}
+                    </ul>
                 </div>
+                <div className="text-base border-t font-medium text-gray-900">
+                    Order total
+                </div>
+                <Currency value={totalPrice}/>
 
             </div>
-            <Button disabled={items.length === 0} onClick={() => routes.push("/cart/checkout")} className="w-full mt-6">
+            {/* <Button onClick={() => routes.push("/cart/checkout")} className="w-full mt-6">
                 Checkout
-            </Button>
+            </Button> */}
         </div>
     )
 }
 
-export default Summary;
+export default ListSummary;

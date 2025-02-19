@@ -1,3 +1,16 @@
+export interface Store {
+    name: string;
+    term_condition: string;
+    shiping_returns: string;
+    privacy_policy: string;
+}
+
+export interface Socials {
+    id: string;
+    name: string;
+    link: string;
+}
+
 export interface Billboard {
     id: string;
     label: string;
@@ -17,7 +30,7 @@ export interface Product {
     price: string;
     isFeatured: boolean;
     size: Size;
-    color: Color;
+    // color: Color;
     images: Image[];
 }
 
@@ -32,8 +45,8 @@ export interface Size {
     value: string;
 }
 
-export interface Color {
-    id: string;
-    name: string;
-    value: string;
-}
+// export interface Color {
+//     id: string;
+//     name: string;
+//     value: string;
+// }
