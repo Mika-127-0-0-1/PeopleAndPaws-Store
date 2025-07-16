@@ -57,8 +57,6 @@ type ContactFormValues = z.infer<typeof formSchema>;
 
 const UserForm = () => {
     const items = useCart((state) => state.items);
-    const searchParams = useSearchParams();
-    const removeAll = useCart((state) => state.removeAll);
 
     const form = useForm<ContactFormValues>({
         resolver: zodResolver(formSchema),
@@ -68,18 +66,6 @@ const UserForm = () => {
     });
 
     const Wshipping = form.watch("shipping"); // Watch the selected shipping value
-
-
-    useEffect(() => {
-        if(searchParams.get("success")) {
-            toast.success("Order Placed.");
-            removeAll();
-        }
-
-        if(searchParams.get("canceled")) {
-            toast.error("Something went wrong.");
-        }
-    }, [searchParams, removeAll]);
 
     // Ensure a 256-bit (32-byte) encryption key
     const secretKey = crypto.createHash("sha256").update(process.env.ENCRYPTION_SECRET || "sk_test_ThDgaPIeTfMIWmoijn4MHEoCi8zH6g1mb80WQuYBfg").digest(); // Converts to 32-byte Buffer

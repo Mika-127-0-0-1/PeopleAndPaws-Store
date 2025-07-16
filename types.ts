@@ -8,7 +8,7 @@ export interface Store {
 export interface Socials {
     id: string;
     name: string;
-    link: string;
+    url: string;
 }
 
 export interface Billboard {

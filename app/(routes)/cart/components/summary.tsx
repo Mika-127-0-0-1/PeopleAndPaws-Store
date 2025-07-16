@@ -1,28 +1,17 @@
 "use client";
 
 import Button from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import toast from "react-hot-toast";
+import { useState } from "react";
 
 const Summary = () => {
-    // const searchParams = useSearchParams();
-    // const removeAll = useCart((state) => state.removeAll);
+    const [readTerms, setReadTerms] = useState(false);
     const items = useCart((state) => state.items);
     const routes = useRouter();
-
-    // useEffect(() => {
-    //     if(searchParams.get("success")) {
-    //         toast.success("Payment completed.");
-    //         removeAll();
-    //     }
-
-    //     if(searchParams.get("canceled")) {
-    //         toast.error("Something went wrong.");
-    //     }
-    // }, [searchParams, removeAll]);
 
     const totalPrice = items.reduce((total, item) => {
         return total + Number(item.price);
@@ -42,7 +31,23 @@ const Summary = () => {
                 </div>
 
             </div>
-            <Button disabled={items.length === 0} onClick={() => routes.push("/cart/checkout")} className="w-full mt-6">
+            { items.length > 0 && (
+            <div className="items-top flex space-x-2 mt-6">
+                <Checkbox onCheckedChange={() => {setReadTerms(!readTerms)}} id="terms1" />
+                <div className="grid gap-1.5 leading-none">
+                    <label
+                    htmlFor="terms1"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                    Accept terms and conditions
+                    </label>
+                    <p className="text-sm text-muted-foreground">
+                    You agree to our <Link className="hover:text-gray-700 underline" href={"/terms"}>Terms of Service</Link> and <Link className="hover:text-gray-700 underline" href={"/privacy"}>Privacy Policy</Link>.
+                    </p>
+                </div>
+            </div>
+             )}
+            <Button disabled={!readTerms} onClick={() => routes.push("/cart/checkout")} className="w-full mt-2">
                 Checkout
             </Button>
         </div>

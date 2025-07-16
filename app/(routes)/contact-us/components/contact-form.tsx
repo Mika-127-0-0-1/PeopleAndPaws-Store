@@ -54,7 +54,7 @@ const ContactForm = () => {
                 </div>
                 <div className="flex flex-col">
                     <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3568.2866795846226!2d28.00980552617883!3d-26.575174429186795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e94fbfd62060417%3A0xf1043e7d152db1a1!2sFire%20Fly%20Hobbies!5e0!3m2!1sen!2sza!4v1728802519588!5m2!1sen!2sza" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d223.02368226372147!2d28.00964925533577!3d-26.57221350718673!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e94f9cd28fabac7%3A0xea37b1748fa9fc77!2sEco%20Health%20%26%20PrimeSelf%20%40%20Meyerton!5e0!3m2!1sen!2sza!4v1740224294545!5m2!1sen!2sza" 
                     width="500" 
                     height="400" 
                     className="border-0 hidden lg:inline-block" 
