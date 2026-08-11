@@ -24,9 +24,9 @@ const CartPage = () => {
 
     useEffect(() => {
         if(searchParams.get("success")) {
-            toast.success("Order Placed.");
             setOrder(true);
             removeAll();
+            toast.success("Order Placed.");
         }
 
         if(searchParams.get("canceled")) {

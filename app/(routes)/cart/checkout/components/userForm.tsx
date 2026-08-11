@@ -12,9 +12,7 @@ import { Input } from "@/components/ui/input";
 import Button from '@/components/ui/button';
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { useSearchParams } from 'next/navigation';
 import useCart from '@/hooks/use-cart';
-import crypto from "crypto";
 
 const formSchema = z.object({
     firstname: z.string().min(1),
@@ -67,35 +65,11 @@ const UserForm = () => {
 
     const Wshipping = form.watch("shipping"); // Watch the selected shipping value
 
-    // Ensure a 256-bit (32-byte) encryption key
-    const secretKey = crypto.createHash("sha256").update(process.env.ENCRYPTION_SECRET || "sk_test_ThDgaPIeTfMIWmoijn4MHEoCi8zH6g1mb80WQuYBfg").digest(); // Converts to 32-byte Buffer
-    const iv: Buffer = crypto.randomBytes(16); // 16-byte IV for AES-256
-    // Encryption function
-    const encryptData = (data: object): { encrypted: string; iv: string } => {
-        if (!Buffer.isBuffer(secretKey) || secretKey.length !== 32) {
-        throw new Error("Invalid encryption key: Must be a 32-byte Buffer");
-        }
-        // console.log(secretKey);
-        if (!Buffer.isBuffer(iv) || iv.length !== 16) {
-        throw new Error("Invalid IV: Must be a 16-byte Buffer");
-        }
-    
-        const cipher = crypto.createCipheriv("aes-256-ctr", secretKey, iv); // ✅ Correct mode & params
-        let encrypted = cipher.update(JSON.stringify(data), "utf8", "hex");
-        encrypted += cipher.final("hex");
-    
-        return { encrypted, iv: iv.toString("hex") }; // Store IV as hex
-    };
-
     const onSubmit = async (data: ContactFormValues) => {
         try {
-            // Encrypt user-sensitive data
-            const encryptedData = encryptData(data);
-            // console.log(data);
-
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
                 productIds: items.map((item) => item.id),
-                encryptedData
+                contactData: data
             });
 
             window.location = response.data.url;
@@ -163,7 +137,6 @@ const UserForm = () => {
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Phone number</FormLabel>
-                            {/* TODO: Phone number dropdown list */}
                             <FormControl>
                                 <Input 
                                     // disabled={loading} 
@@ -227,7 +200,7 @@ const UserForm = () => {
                         </div>
                         <div className="flex items-center space-x-2">
                         <RadioGroupItem value="Collect" id="option-three" />
-                        <Label htmlFor="option-three">Collect at...</Label>
+                        <Label htmlFor="option-three">Collect at Eco Health & PrimeSelf @ Meyerton</Label>
                         </div>
                     </RadioGroup>
                     )}
