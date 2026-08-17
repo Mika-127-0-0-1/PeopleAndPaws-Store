@@ -1,6 +1,12 @@
 // import DOMPurify from 'dompurify';
 
 import getStore from "@/actions/get-store";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Terms and Conditions",
+    alternates: { canonical: "/terms" },
+};
 
 export const revalidate =0;
 

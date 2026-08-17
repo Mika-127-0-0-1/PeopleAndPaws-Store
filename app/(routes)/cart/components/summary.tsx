@@ -5,7 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Summary = () => {
@@ -14,7 +14,7 @@ const Summary = () => {
     const routes = useRouter();
 
     const totalPrice = items.reduce((total, item) => {
-        return total + Number(item.price);
+        return total + (Number(item.price) * (item.quantity ?? 1));
     }, 0); 
 
     return (

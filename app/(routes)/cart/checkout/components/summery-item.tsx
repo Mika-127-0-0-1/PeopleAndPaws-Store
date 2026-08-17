@@ -1,11 +1,7 @@
 "use client";
 
 import Currency from "@/components/ui/currency";
-import IconButton from "@/components/ui/icon-button";
-import useCart from "@/hooks/use-cart";
 import { Product } from "@/types";
-import { X } from "lucide-react";
-import Image from "next/image";
 
 interface SumItemProps {
     data: Product;
@@ -14,12 +10,6 @@ interface SumItemProps {
 const SumItem: React.FC<SumItemProps> = ({
     data
 }) => {
-    const cart = useCart();
-
-    const onRemove = () => {
-        cart.removeItem(data.id);
-    }
-
     return (
         <li className="flex boarder-b">
             <div className="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">

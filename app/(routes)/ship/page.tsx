@@ -1,6 +1,12 @@
 // import DOMPurify from 'dompurify';
 
 import getStore from "@/actions/get-store";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Shipping and Returns",
+    alternates: { canonical: "/ship" },
+};
 
 export const revalidate =0;
 

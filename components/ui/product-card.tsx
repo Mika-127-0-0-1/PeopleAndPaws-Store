@@ -34,7 +34,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
         event.stopPropagation();
 
-        cart.addItem(data);
+        cart.addItem({ ...data, quantity: 1 });
     }
 
     return (
@@ -42,7 +42,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             {/* Images and Actions */}
             <div className="aspect-square rounded-xl bg-gray-100 relative">
                 <Image 
-                alt="Image"
+                alt={`${data.name} natural wellness product`}
                 src={data?.images?.[0]?.url}
                 fill
                 className="aspect-square object-cover rounded-md"/>

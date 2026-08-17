@@ -1,18 +1,11 @@
 "use client";
 
-import Button from "@/components/ui/button";
 import Currency from "@/components/ui/currency";
 import useCart from "@/hooks/use-cart";
-import axios from "axios";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import toast from "react-hot-toast";
 import SumItem from "./summery-item";
 
 const ListSummary = () => {
-    const removeAll = useCart((state) => state.removeAll);
     const items = useCart((state) => state.items);
-    const routes = useRouter();
     const cart = useCart();
 
     const totalPrice = items.reduce((total, item) => {

@@ -68,7 +68,10 @@ const UserForm = () => {
     const onSubmit = async (data: ContactFormValues) => {
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
-                productIds: items.map((item) => item.id),
+                orderItems: items.map((item) => ({
+                    productId: item.id,
+                    quantity: item.quantity ?? 1,
+                })),
                 contactData: data
             });
 

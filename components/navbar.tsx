@@ -3,14 +3,12 @@ import Link from "next/link";
 import MainNav from "@/components/main-nav";
 import getCategories from "@/actions/get-categories";
 import NavbarActions from "@/components/navbar-actions";
-import getStore from "@/actions/get-store";
 import Image from "next/image";
 
-export const relalidate =0;
+export const revalidate = 0;
 
 const Navbar = async () => {
     const categories = await getCategories();
-    const store = await getStore();
 
     return (
         <div className=" border-b">
@@ -22,7 +20,7 @@ const Navbar = async () => {
                         </p> */}
                         <Image
                             src={"/Bussiness card_Named_Logo.png"}
-                            alt="Logo"
+                            alt="Therapeuo Store natural health and wellness"
                             width={200}
                             height={200}
                             className="h-20 w-auto"

@@ -1,4 +1,11 @@
 import ContactForm from "./components/contact-form";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Contact Us",
+    description: "Contact Therapeuo Store in Meyerton for help with Prime Self, NeuroActive, Pierre Ecohealth and natural wellness products.",
+    alternates: { canonical: "/contact-us" },
+};
 
 const ContactPage = () => {
 

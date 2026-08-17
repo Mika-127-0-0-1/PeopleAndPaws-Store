@@ -8,6 +8,7 @@ import Filter from "./components/filter";
 import NoResults from "@/components/ui/no-results";
 import ProductCard from "@/components/ui/product-card";
 import MobileFilters from "./components/mobile-filters";
+import type { Metadata } from "next";
 
 interface CategoryProps {
     params: {
@@ -17,6 +18,26 @@ interface CategoryProps {
         // colorId: string;
         sizeId: string;
     }
+}
+
+export async function generateMetadata({ params }: CategoryProps): Promise<Metadata> {
+    const category = await getCategory(params.categoryId);
+    const description = `Shop ${category.name} products from Prime Self, NeuroActive and Pierre Ecohealth for natural wellness, personal training and holistic pet health.`;
+
+    return {
+        title: category.name,
+        description,
+        alternates: { canonical: `/category/${category.id}` },
+        openGraph: {
+            type: "website",
+            url: `/category/${category.id}`,
+            title: category.name,
+            description,
+            images: category.billboard?.imageUrl
+                ? [{ url: category.billboard.imageUrl, alt: category.billboard.label }]
+                : [],
+        },
+    };
 }
 
 const Category: React.FC<CategoryProps> =  async ({

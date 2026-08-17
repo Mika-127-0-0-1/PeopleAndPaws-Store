@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
+import { TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 
 import { Image as Imagetype } from "@/types";
 import GalleryTab from "./gallery-tab";
@@ -30,7 +30,7 @@ const Gallery: React.FC<GalleryProps> = ({
                             <Image 
                                 fill
                                 src={image.url}
-                                alt="Image"
+                                alt="Product image"
                                 className="object-cover object-center"
                             />
                         </div>

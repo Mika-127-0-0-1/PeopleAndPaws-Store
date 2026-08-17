@@ -1,17 +1,12 @@
 "use client";  
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Container from "@/components/ui/container";
-import useCart from '@/hooks/use-cart';
-import { useRouter } from 'next/navigation';
 import ListSummary from './components/listSummary';
 import UserForm from './components/userForm';
 
 const CheckoutPage = () => {
     const [isMounted, setMounted] = useState(false);
-    const cart = useCart();
-    const routes = useRouter();
-
     useEffect(() => {
         setMounted(true);
     }, []);

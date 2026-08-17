@@ -62,7 +62,7 @@ const CartPage = () => {
                         <br/>
                         <p><strong>Note:</strong> No items will be released or shipped until payment reflects in our bank account.</p>
                         <br/>
-                        <p>Should you need to make any changes or have questions, feel free to contact us—we're here to help!</p>
+                        <p>Should you need to make any changes or have questions, feel free to contact us—we&apos;re here to help!</p>
                         <br/>
                         {/* <p><strong>Banking details</strong></p><br/>
                         <p><strong>Account holder:</strong> Sonet</p> */}
