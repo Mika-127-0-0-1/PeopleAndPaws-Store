@@ -44,6 +44,14 @@ const Info: React.FC<InfoProps> = ({
                     <Currency value={data?.price}/>
                 </p>
             </div>
+            {data.description && (
+                <div className="mt-6">
+                    <h2 className="font-semibold text-gray-900">Description</h2>
+                    <p className="mt-2 whitespace-pre-line leading-7 text-gray-600">
+                        {data.description}
+                    </p>
+                </div>
+            )}
             <hr className="my-4"/>
             <div className="flex flex-col gap-y-6">
                 <div className="flex items-center gap-x-4">

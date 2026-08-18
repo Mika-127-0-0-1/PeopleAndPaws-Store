@@ -7,6 +7,7 @@ import ModalProvider from "@/providers/modal-provider";
 import { ToasterProvider } from "@/providers/toast-provider";
 import { ClerkProvider } from '@clerk/nextjs'
 import { seoKeywords, siteDescription, siteName, siteUrl } from "@/lib/seo";
+import getStore from "@/actions/get-store";
 
 const font = Urbanist({ subsets: ["latin"] });
 
@@ -49,11 +50,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const store = await getStore();
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": ["Store", "HealthAndBeautyBusiness"],
@@ -83,11 +85,29 @@ export default function RootLayout({
           />
         </head>
         <body className={font.className}>
-          <ModalProvider />
-          <ToasterProvider />
-          <Navbar />
-          {children}
-          <Footer />
+          {store.isMaintenance ? (
+            <main className="flex min-h-screen items-center justify-center bg-slate-50 px-6 py-16 text-center">
+              <div className="max-w-xl">
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">
+                  {store.name}
+                </p>
+                <h1 className="mt-5 text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">
+                  We&rsquo;ll be back soon
+                </h1>
+                <p className="mt-6 text-lg leading-8 text-slate-600">
+                  Our store is currently undergoing maintenance. Thank you for your patience while we make things better.
+                </p>
+              </div>
+            </main>
+          ) : (
+            <>
+              <ModalProvider />
+              <ToasterProvider />
+              <Navbar />
+              {children}
+              <Footer />
+            </>
+          )}
         </body>
       </html>
     </ClerkProvider>
