@@ -4,6 +4,10 @@ const nextConfig = {
         domains: [
             "res.cloudinary.com"
         ]
+    },
+
+    experimental: {
+        cpus: 1
     }
 };
 
